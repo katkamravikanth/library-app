@@ -28,13 +28,7 @@
 			"name": "Borrow a Book",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "X-API-KEY",
-						"value": "b5n9xz2h5w7kpr3xv4fg0t1u8dsc6m8j",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -58,13 +52,7 @@
 			"name": "Return a Book",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "X-API-KEY",
-						"value": "b5n9xz2h5w7kpr3xv4fg0t1u8dsc6m8j",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
