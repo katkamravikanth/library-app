@@ -4,9 +4,10 @@
 
 1. Clone the repository
 2. Run `composer install`
-3. Set up the database configuration in `.env` file
-4. Run migrations: `php bin/console doctrine:migrations:migrate`
-5. Start the server: `symfony server:start` or `php -S localhost:8000 -t public/`
+3. Copy `.env.dist` and rename to `.env` file
+4. Set up the database configuration in `.env` file
+5. Run migrations: `php bin/console doctrine:migrations:migrate`
+6. Start the server: `symfony server:start` or `php -S localhost:8000 -t public/`
 
 ### Data Seeding
 
