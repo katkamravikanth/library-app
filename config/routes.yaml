@@ -1,0 +1,20 @@
+controllers:
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
+user_list:
+  path: /users
+  controller: App\Controller\UserController::list
+
+book_list:
+  path: /books
+  controller: App\Controller\UserController::bookList
+
+user_borrow_book:
+  path: /user/{id}/borrow/{bookId}
+  controller: App\Controller\UserController::borrowBook
+
+user_detail:
+  path: /user/{id}
+  controller: App\Controller\UserController::userDetail

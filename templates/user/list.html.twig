@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User List{% endblock %}
+
+{% block body %}
+    <h1>User List</h1>
+
+    <ul>
+        {% for user in users %}
+            <li>
+                <a href="{{ path('app_user_detail', { 'id': user.id }) }}">{{ user.name }}</a>
+                
+                {% if user.borrowings|length > 0 %}
+                    <ul>
+                        {% for borrowing in user.borrowings %}
+                            <li>
+                                {{ borrowing.book.title }} by {{ borrowing.book.author }} - 
+                                {{ borrowing.checkoutDate|date('Y-m-d H:i:s') }}
+                                {% if not borrowing.checkinDate %}
+                                    (Currently Borrowed)
+                                {% else %}
+                                    (Returned on {{ borrowing.checkinDate|date('Y-m-d H:i:s') }})
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No borrowed books.</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

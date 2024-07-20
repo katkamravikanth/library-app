@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book List{% endblock %}
+
+{% block body %}
+    <h1>Book List</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{{ path('app_book_detail', { 'id': book.id }) }}">{{ book.title }}</a> by {{ book.author }} - {{ book.isAvailable() ? 'Available' : 'Borrowed' }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

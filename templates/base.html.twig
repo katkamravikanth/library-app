@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Library{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <a href="{{ path('user_list') }}">Users</a>
+            <a href="{{ path('book_list') }}">Books</a>
+        </nav>
+
+        {% block body %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Details{% endblock %}
+
+{% block body %}
+    <h1>User Details</h1>
+
+    <h2>{{ user.name }}</h2>
+
+    <h3>Borrowed Books</h3>
+    {% if user.borrowings|length > 0 %}
+        <ul>
+            {% for borrowing in user.borrowings %}
+                <li>
+                    {{ borrowing.book.title }} by {{ borrowing.book.author }}
+                    {% if not borrowing.checkinDate %}
+                        <form action="{{ path('app_user_book_return', { 'id': borrowing.book.id }) }}" method="post" style="display:inline;">
+                            <button type="submit">Return Book</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books borrowed.</p>
+    {% endif %}
+
+    <h3>Borrow a Book</h3>
+    {% for flash_message in app.flashes('success') %}
+        <div style="color: green;">
+            <strong>Success:</strong> {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    {% for flash_message in app.flashes('error') %}
+        <div style="color: red;">
+            <strong>Error:</strong> {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <form action="{{ path('app_user_borrow_book', { 'id': user.id }) }}" method="post">
+        <label for="book">Select Book:</label>
+        <select name="book_id" id="book">
+            {% for book in availableBooks %}
+                <option value="{{ book.id }}">{{ book.title }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Borrow Book</button>
+    </form>
+
+    <a href="{{ path('app_user_list') }}">Back to user list</a>
+{% endblock %}

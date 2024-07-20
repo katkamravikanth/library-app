@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Details{% endblock %}
+
+{% block body %}
+    <h1>Book Details</h1>
+
+    <h2>{{ book.title }}</h2>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Status:</strong> {{ book.isAvailable() ? 'Available' : 'Borrowed' }}</p>
+
+    <h3>Borrowing Information</h3>
+    {% if book.borrowings|length > 0 %}
+        <ul>
+            {% for borrowing in book.borrowings %}
+                <li>Borrowed by: {{ borrowing.user.name }} on {{ borrowing.checkoutDate|date('Y-m-d H:i:s') }}</li>
+                {% if borrowing.checkinDate %}
+                    <li>Returned on: {{ borrowing.checkinDate|date('Y-m-d H:i:s') }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>This book has not been borrowed yet.</p>
+    {% endif %}
+
+    {% if book.isAvailable() %}
+        <!-- Display flash messages -->
+        {% for flash_message in app.flashes('success') %}
+            <div style="color: green;">
+                <strong>Success:</strong> {{ flash_message }}
+            </div>
+        {% endfor %}
+
+        {% for flash_message in app.flashes('error') %}
+            <div style="color: red;">
+                <strong>Error:</strong> {{ flash_message }}
+            </div>
+        {% endfor %}
+
+        <!-- Book details here -->
+        <form action="{{ path('app_book_borrow', { 'id': book.id }) }}" method="post">
+            <label for="user">Borrower:</label>
+            <select name="user_id" id="user">
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Borrow Book</button>
+        </form>
+    {% else %}
+        <form action="{{ path('app_book_return', { 'id': book.id }) }}" method="post">
+            <button type="submit">Return Book</button>
+        </form>
+    {% endif %}
+
+    <a href="{{ path('app_book_list') }}">Back to book list</a>
+{% endblock %}

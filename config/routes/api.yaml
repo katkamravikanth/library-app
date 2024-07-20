@@ -1,0 +1,19 @@
+api_users:
+  path: /api/users
+  controller: App\Controller\Api\UserController::listUsers
+  methods: GET
+
+api_books:
+  path: /api/books
+  controller: App\Controller\Api\BookController::listBooks
+  methods: GET
+
+api_borrow:
+  path: /api/borrow
+  controller: App\Controller\Api\BorrowController::borrowBook
+  methods: POST
+
+api_return:
+  path: /api/return
+  controller: App\Controller\Api\ReturnController::returnBook
+  methods: POST
