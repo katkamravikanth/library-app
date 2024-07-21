@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Library\Entity;
 
-use App\Repository\UserRepository;
+use App\Library\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -83,7 +83,7 @@ class User
             throw new \Exception("Book already borrowed by this user");
         }
 
-        if ($this->borrowings->count() >= 5) {
+        if ($this->activeBorrowedBook()->count() >= 5) {
             throw new \Exception("User cannot borrow more than 5 books");
         }
 
@@ -99,5 +99,17 @@ class User
             }
         }
         return false;
+    }
+
+    /**
+     * @return Collection|Borrowing[]
+     */
+    public function activeBorrowedBook(): Collection
+    {
+        return $this->borrowings->filter(
+            function (Borrowing $borrowing) {
+                return $borrowing->getCheckinDate() === null;
+            }
+        );
     }
 }

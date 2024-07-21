@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Book;
+use App\Library\Entity\Book;
 use App\Service\BorrowingService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

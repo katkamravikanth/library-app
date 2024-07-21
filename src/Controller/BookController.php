@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Book;
-use App\Entity\Borrowing;
-use App\Repository\BookRepository;
-use App\Repository\UserRepository;
+use App\Library\Entity\Book;
+use App\Library\Entity\Borrowing;
+use App\Library\Repository\BookRepository;
+use App\Library\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

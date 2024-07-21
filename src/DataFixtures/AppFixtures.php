@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Book;
-use App\Entity\Borrowing;
-use App\Entity\User;
+use App\Library\Entity\Book;
+use App\Library\Entity\Borrowing;
+use App\Library\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

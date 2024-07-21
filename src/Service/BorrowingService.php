@@ -2,8 +2,8 @@
 
 namespace App\Service;
 
-use App\Repository\UserRepository;
-use App\Repository\BookRepository;
+use App\Library\Repository\UserRepository;
+use App\Library\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class BorrowingService

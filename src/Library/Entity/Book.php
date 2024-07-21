@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Library\Entity;
 
-use App\Repository\BookRepository;
+use App\Library\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

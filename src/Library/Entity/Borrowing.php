@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Library\Entity;
 
-use App\Repository\BorrowingRepository;
+use App\Library\Repository\BorrowingRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BorrowingRepository::class)]

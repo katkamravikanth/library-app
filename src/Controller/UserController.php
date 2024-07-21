@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Book;
-use App\Entity\Borrowing;
-use App\Entity\User;
-use App\Repository\BookRepository;
-use App\Repository\UserRepository;
+use App\Library\Entity\Book;
+use App\Library\Entity\Borrowing;
+use App\Library\Entity\User;
+use App\Library\Repository\BookRepository;
+use App\Library\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +52,7 @@ class UserController extends AbstractController
         }
 
         // Check if the user has already borrowed 5 books
-        if ($user->getBorrowings()->count() >= 5) {
+        if ($user->activeBorrowedBook()->count() >= 5) {
             $this->addFlash('error', 'You cannot borrow more than 5 books');
             return $this->redirectToRoute('app_user_detail', ['id' => $user->getId()]);
         }
